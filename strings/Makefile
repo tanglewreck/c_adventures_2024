@@ -5,9 +5,11 @@ objects = $(target).o
 
 # default: $(target)
 
-$(target): $(target).o
-	@clear
+$(target) c: $(target).o
 	gcc -Wall -o $(target) $(target).c
+
+$(target)-cc cc: $(target).o
+	g++ -Wall -o $(target)_cc $(target).cc
 
 debug: $(target).o
 	gcc -g -Wall -o$(target) $(target).c
