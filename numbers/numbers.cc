@@ -13,8 +13,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <cctype>
 
 using namespace std;  // so we can omit the 'std::' prefix
+// using string = basic_string<char>; 
 
 void new_lines(int n) {
     // cout << "newlines\n";
@@ -51,6 +53,23 @@ int main() {
     int i1 = 100;
     int i2 = 10;
     int i3 = 3;
+
+    // cout << "F00" + " " + "bar";
+    string s1 = "foo";
+    string s2 = "bar";
+    string s3 = s1 + ' ' + s2;
+    s3 += '\n';
+    cout << s3;
+    // cout << s1 + ' ' + s2;
+    // cout << "foo"[0] + "\n";
+    cout << "foo"[0];
+    char c1 = "foo"[0];
+    char c2 = toupper(c1);
+    string s4 {"spam ham bam"};
+    string s5 = "HAM SPAM";
+    cout << s5;
+    new_lines(1);
+
 
     heading("C++ ftw", '=', 10);
     new_lines(1);
