@@ -1,3 +1,15 @@
+/*******************************************************************
+ * numbers -- program to test various number operations
+ *
+ * Author:
+ *      mier
+ * Date:
+ *      2024-10-26
+ * Purpose: 
+ *      Learning about numbers
+ * Usage: 
+ *      Run the program and various messages appear.
+ * *******************************************************************/
 #include <stdio.h>
 #include <string.h>
 
