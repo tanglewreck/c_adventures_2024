@@ -1,5 +1,5 @@
 # vim tmp-files
-*swp
+.*swp
 
 # Prerequisites
 *.d
