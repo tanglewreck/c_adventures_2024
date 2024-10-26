@@ -5,7 +5,7 @@ objects = $(target).o
 
 # default: $(target)
 
-bitwise: $(target).o
+$(target): $(target).o
 	@clear
 	gcc -Wall -o $(target) $(target).c
 
