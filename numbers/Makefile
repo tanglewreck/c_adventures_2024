@@ -4,12 +4,12 @@
 
 CC_FLAGS = -g -Wall -pedantic
 
-CC := clang ${CC_FLAGS}
 PLATFORM := $(shell uname)
 ifeq ($(PLATFORM),Darwin)
 	PATH := /usr/local/opt/llvm/bin:$(PATH)
-	CC := $(PATH)/clang
 endif
+
+CC := clang ${CC_FLAGS}
 GCC := gcc ${CC_FLAGS}
 
 CC++ := clang++ ${CC_FLAGS}
