@@ -17,14 +17,14 @@ cc = /usr/bin/clang -Wall
 
 default: $(target)
 
-two: two.c
-	@#$(cc) -o two two.o
-	${CC} -o two two.c
+two: two.o
+	${CC} -o two two.o
 
 two.o: two.c
-	${CC} -o two.o two.c
+	${CC} -c -o two.o two.c
 
 $(target) c: $(target).o
+	@echo make c
 	${CC} -Wall -o $(target) $(target).o
 
 $(target_cc) cc g++: $(target).cc
@@ -32,6 +32,7 @@ $(target_cc) cc g++: $(target).cc
 
 
 $(target).o: $(target).c
+	@echo target.o
 	gcc -Wall -c -o $(target).o $(target).c
 
 $(target_cc).o: $(target).cc
