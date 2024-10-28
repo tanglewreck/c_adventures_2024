@@ -41,7 +41,7 @@ void heading(string header_text, char separator_char, int separator_length) {
     // cout << "\n";
 }
 
-int main() {
+int main(void) {
 
     int c = 0;
     /* 
@@ -65,7 +65,17 @@ int main() {
     cout << "foo"[0];
     char c1 = "foo"[0];
     char c2 = toupper(c1);
-    string s4 {"spam ham bam"};
+
+    // this produces an error when compiled
+    // with clang++ on MacOS:
+    //      numbers.cc:68:14: error: expected ';' at end of declaration
+    //        68 |     string s4 {"spam ham bam"};
+    //           |              ^  
+    //           |              ;
+    //      1 error generated.
+    /* string s4 {"spam ham bam"}; */
+    string s4 = "spam ham bam";
+
     string s5 = "HAM SPAM";
     cout << s5;
     new_lines(1);

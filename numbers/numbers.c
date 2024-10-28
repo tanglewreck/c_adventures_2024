@@ -14,7 +14,7 @@
 #include <string.h>
 
 
-int main() {
+int main(void) {
 
     /* 
     float f1 = 10 / 3; 
