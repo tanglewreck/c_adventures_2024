@@ -41,6 +41,10 @@ void heading(string header_text, char separator_char, int separator_length) {
     // cout << "\n";
 }
 
+// NOTE: In modern versions of C/C++, function declarations without a 
+// prototype is deprecated. Adding 'void' to the prototype of main(),
+// i.e. 'int main(void)' instead of 'int main()', resolves this and 
+// makes clang not issue a warning (which gcc does not seem to do).
 int main(void) {
 
     int c = 0;
