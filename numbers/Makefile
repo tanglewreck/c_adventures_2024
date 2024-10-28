@@ -1,18 +1,35 @@
+CC_FLAGS = -g -Wall -pedantic
+
+CC := clang ${CC_FLAGS}
+GCC := gcc ${CC_FLAGS}
+CC++ := clang++ ${CC_FLAGS}
+GCC++ := clang++ ${CC_FLAGS}
+
 target = numbers
 target_cc = $(target)_cc
 
-executables = $(target) $(target_cc)
-objects = $(target).o $(target_cc).o
+executables = $(target) $(target_cc) two
+# objects = $(target).o $(target_cc).o 
+objects = *.o
 
-gcc = /usr/local/bin/gcc
+# gcc = /usr/local/bin/gcc
+cc = /usr/bin/clang -Wall
 
-# default: $(target)
+default: $(target)
+
+two: two.c
+	@#$(cc) -o two two.o
+	${CC} -o two two.c
+
+two.o: two.c
+	${CC} -o two.o two.c
 
 $(target) c: $(target).o
-	$(gcc) -Wall -o $(target) $(target).o
+	${CC} -Wall -o $(target) $(target).o
 
-$(target_cc) cc g++: $(target_cc).o
-	g++ -Wall -o $(target_cc) $(target_cc).o
+$(target_cc) cc g++: $(target).cc
+	${CC++} -Wall -o $(target_cc) $(target).cc
+
 
 $(target).o: $(target).c
 	gcc -Wall -c -o $(target).o $(target).c
