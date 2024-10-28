@@ -1,7 +1,21 @@
+# 
+# export CPPFLAGS="-I/usr/local/opt/llvm/include"
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+PLATFORM := $(shell uname)
+ifeq ($(PLATFORM),Darwin)
+	PATH := /usr/local/opt/llvm/bin:$(PATH)
+	CC := $(PATH)/clang
+else ifeq($(PLATFORM),Linux)
+	PATH = foo
+else
+	PATH = bar
+endif
+
 CC_FLAGS = -g -Wall -pedantic
 
-CC := clang ${CC_FLAGS}
+# CC := clang ${CC_FLAGS}
 GCC := gcc ${CC_FLAGS}
+
 CC++ := clang++ ${CC_FLAGS}
 GCC++ := clang++ ${CC_FLAGS}
 
@@ -18,25 +32,28 @@ cc = /usr/bin/clang -Wall
 default: $(target)
 
 two: two.o
+	@which clang
 	${CC} -o two two.o
+
+two-verbose: two.o
+	@which clang
+	${CC} -v -o two two.o
 
 two.o: two.c
 	${CC} -c -o two.o two.c
 
 $(target) c: $(target).o
 	@echo make c
-	${CC} -Wall -o $(target) $(target).o
+	${CC} -o $(target) $(target).o
 
 $(target_cc) cc g++: $(target).cc
 	${CC++} -Wall -o $(target_cc) $(target).cc
 
-
 $(target).o: $(target).c
-	@echo target.o
-	gcc -Wall -c -o $(target).o $(target).c
+	${CC} -c -o $(target).o $(target).c
 
 $(target_cc).o: $(target).cc
-	g++ -Wall -c -o $(target_cc).o $(target).cc
+	${CC++} -c -o $(target_cc).o $(target).cc
 
 debug: $(target).o
 	gcc -g -Wall -o$(target) $(target).c
@@ -46,6 +63,11 @@ pedantic: $(target).o
 
 ansi: $(target).o
 	gcc -Wall -ansi -pedantic -o $(target) $(target).c
+
+clang-path:
+	@echo $(CC) 
+	@which clang
+	@which clang++
 
 clean:
 	rm -f $(objects)
