@@ -42,10 +42,14 @@ $(target) c: $(target).o
 	@echo make c
 	${CC} -o $(target) $(target).o
 
-$(target_cc) cc g++: $(target).cc
+$(target_cc) cc: $(target).cc
 	${CC++} -Wall -o $(target_cc) $(target).cc
 
+cc-verbose: $(target).cc
+	${CC++} -v -Wall -o $(target_cc) $(target).cc
+
 $(target).o: $(target).c
+	@which clang
 	${CC} -c -o $(target).o $(target).c
 
 $(target_cc).o: $(target).cc
