@@ -1,19 +1,15 @@
 # 
 # export CPPFLAGS="-I/usr/local/opt/llvm/include"
 # export LDFLAGS="-L/usr/local/opt/llvm/lib"
+
+CC_FLAGS = -g -Wall -pedantic
+
+CC := clang ${CC_FLAGS}
 PLATFORM := $(shell uname)
 ifeq ($(PLATFORM),Darwin)
 	PATH := /usr/local/opt/llvm/bin:$(PATH)
 	CC := $(PATH)/clang
-else ifeq($(PLATFORM),Linux)
-	PATH = foo
-else
-	PATH = bar
 endif
-
-CC_FLAGS = -g -Wall -pedantic
-
-# CC := clang ${CC_FLAGS}
 GCC := gcc ${CC_FLAGS}
 
 CC++ := clang++ ${CC_FLAGS}
