@@ -4,10 +4,12 @@ target_cc = $(target)_cc
 executables = $(target) $(target_cc)
 objects = $(target).o $(target_cc).o
 
+gcc = /usr/local/bin/gcc
+
 # default: $(target)
 
 $(target) c: $(target).o
-	gcc -Wall -o $(target) $(target).o
+	$(gcc) -Wall -o $(target) $(target).o
 
 $(target_cc) cc g++: $(target_cc).o
 	g++ -Wall -o $(target_cc) $(target_cc).o
