@@ -3,12 +3,11 @@ target_cc = $(target)_cc
 target_clang = $(target)_clang
 
 executables = $(target) $(target_cc) $(target_clang)
-objects = $(target).o $(target_cc).o $(target_14).o $(target_clang).o
+objects = $(target).o $(target_cc).o $(target_14).o $(target_clang).o $(target_clang)_debug.o $(target)_debug.o
 
 # default: $(target)
 
 $(target_clang) clang: $(target_clang).o
-	@echo clang
 	clang -Wall -o $(target_clang) $(target_clang).o
 
 $(target_cc)_14 cc14: $(target_cc)_14.o
@@ -27,7 +26,6 @@ $(target_cc)_14.o: $(target_cc).c
 	g++ -Wall -std=c++14 -o $(target_cc)_14.o $(target_cc).c
 
 $(target_clang).o clang.o: $(target).c
-	@echo clang.o
 	clang -Wall -c -o $(target_clang).o $(target).c
 
 $(target).o: $(target).c
@@ -36,8 +34,15 @@ $(target).o: $(target).c
 $(target_cc).o: $(target).cc
 	g++ -Wall -c -o $(target_cc).o $(target).cc
 
-debug: $(target).o
-	gcc -g -Wall -o$(target) $(target).c
+debug: $(target_clang)_debug.o
+	clang -Wall -D DEBUG=1 -o $(target_clang) $(target_clang)_debug.o
+
+$(target_clang)_debug.o: $(target).c
+	clang -Wall -c -D DEBUG=1 -o $(target_clang)_debug.o $(target).c
+
+gcc_debug: $(target).c
+	gcc -g -Wall -D DEBUG=1 -o$(target) $(target).c
+
 
 pedantic: $(target).o
 	gcc -Wall -ansi -pedantic -o $(target) $(target).c
