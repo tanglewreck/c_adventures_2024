@@ -110,6 +110,8 @@ int main(int argc, char* argv[]) {
     printf("    %d    %d    %d\n", nl, nw, nc);     // Loop is done, so print results
 }
 
+// This is just a foo function which is used
+// above (with the function prototype preceding)
 char *outputSomething(void) {
     printf("something\n");
     return 0;

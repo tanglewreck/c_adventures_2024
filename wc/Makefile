@@ -5,7 +5,9 @@ target_clang = $(target)_clang
 executables = $(target) $(target_cc) $(target_clang)
 objects = $(target).o $(target_cc).o $(target_14).o $(target_clang).o $(target_clang)_debug.o $(target)_debug.o
 
+#
 # default: $(target)
+#
 
 $(target_clang) clang: $(target_clang).o
 	clang -Wall -o $(target_clang) $(target_clang).o
