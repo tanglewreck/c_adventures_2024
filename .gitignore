@@ -1,9 +1,12 @@
 # vim tmp-files
 .*swp
 
-# cmake build directories
+# cmake 
 */build/
 build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
 
 # Prerequisites
 *.d
